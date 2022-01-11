@@ -2,10 +2,10 @@
   "name": "api-express",
   "version": "1.0.0",
   "description": "API express.js",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13"
   }
 }
