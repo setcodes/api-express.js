@@ -9,6 +9,7 @@ import 'reflect-metadata';
 import {json} from 'body-parser';
 import { UsersService } from './users/users.service';
 import { IUsersService } from './users/users.service.interface';
+import { IConfigService } from './config/config.service.interface';
 
 @injectable()
 export class App {
@@ -21,6 +22,7 @@ export class App {
 		@inject(TYPES.UserController) private userController: UsersController,
 		@inject(TYPES.IUserService) private userService: IUsersService,
 		@inject(TYPES.ExeptionFilter) private exeptionFilter: ExeptionFilter,
+		@inject(TYPES.ConfigService) private configService: IConfigService,
 	) {
 		this.app = express();
 		this.port = 8000;
