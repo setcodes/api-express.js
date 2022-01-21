@@ -10,6 +10,7 @@ import { json } from 'body-parser';
 import { IUsersService } from './users/users.service.interface';
 import { IConfigService } from './config/config.service.interface';
 import { PrismaService } from './database/prisma.service';
+import { UsersRepository } from './users/users.repository';
 
 @injectable()
 export class App {
@@ -24,6 +25,7 @@ export class App {
 		@inject(TYPES.ExeptionFilter) private exeptionFilter: ExeptionFilter,
 		@inject(TYPES.ConfigService) private configService: IConfigService,
 		@inject(TYPES.PrismaService) private prismaService: PrismaService,
+		@inject(TYPES.UsersRepository) private usersRepository: UsersRepository,
 	) {
 		this.app = express();
 		this.port = 8000;
@@ -34,7 +36,7 @@ export class App {
 	}
 
 	useRoutes(): void {
-		this.app.use('/user', this.userController.router);
+		this.app.use('/users', this.userController.router);
 	}
 
 	useExeptionFilters(): void {
