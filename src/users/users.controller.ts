@@ -26,6 +26,7 @@ export class UsersController extends BaseController implements IUsersController 
 		this.bindRoutes([
 			{ path: '/login', method: 'post', func: this.login, middlewares: [new ValidateMiddleweare(UserLoginDto)] },
 			{ path: '/register', method: 'post', func: this.register, middlewares: [new ValidateMiddleweare(UserRegisterDto)] },
+			{ path: '/info', method: 'get', func: this.info, middlewares: [] },
 		]);
 	}
 	async login(req: Request<{}, {}, UserLoginDto>, res: Response, next: NextFunction): Promise<void> {
@@ -37,6 +38,8 @@ export class UsersController extends BaseController implements IUsersController 
 		this.ok(res, {jwt});
 	}
 
+
+
 	async register({body}: Request<{}, {}, UserRegisterDto>, res: Response, next: NextFunction): Promise<void> {
 		const result = await this.userService.createUser(body);
 		if(!result) {
@@ -44,6 +47,12 @@ export class UsersController extends BaseController implements IUsersController 
 		}
 		this.ok(res, {email: result.email, id: result.id});
 	}
+
+
+	async info({ user }: Request, res: Response, next: NextFunction): Promise<void> {
+		this.ok(res, { email: user });
+	}
+
 
 
 	private signJWT(email: string, secret: string ): Promise<string> {
