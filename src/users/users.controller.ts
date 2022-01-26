@@ -19,7 +19,7 @@ import { IUsersService } from './users.service.interface';
 export class UsersController extends BaseController implements IUsersController {
 	constructor(
 		@inject(TYPES.ILogger) private loggerService: LoggerService,
-		@inject(TYPES.IUserService) private userService: IUsersService,
+		@inject(TYPES.UserService) private userService: IUsersService,
 		@inject(TYPES.ConfigService) private configService: IConfigService
 	) {
 		super(loggerService);
